@@ -1,0 +1,10 @@
+[36m2023-04-03T19:12:49.584[m [32mINFO[m [1mStarting LogDemoApplication using Java 17.0.5 with PID 15416 (D:\Code\java\spring-boot-study\log-demo\target\classes started by LENOVO in D:\Code\java\spring-boot-study\log-demo)
+[m[36m2023-04-03T19:12:49.590[m [32mINFO[m [1mThe following 1 profile is active: "log_xml"
+[m[36m2023-04-03T19:12:50.157[m [32mINFO[m [1mTomcat initialized with port(s): 8080 (http)
+[m[36m2023-04-03T19:12:50.229[m [32mINFO[m [1mRoot WebApplicationContext: initialization completed in 613 ms
+[m[36m2023-04-03T19:12:50.474[m [32mINFO[m [1mTomcat started on port(s): 8080 (http) with context path ''
+[m[36m2023-04-03T19:12:50.480[m [32mINFO[m [1mStarted LogDemoApplication in 1.25 seconds (process running for 1.822)
+[m[36m2023-04-03T19:12:52.474[m [32mINFO[m [1mInitializing Servlet 'dispatcherServlet'
+[m[36m2023-04-03T19:12:52.475[m [32mINFO[m [1mCompleted initialization in 1 ms
+[m[36m2023-04-03T19:12:52.494[m [32mINFO[m [1minfo
+[m

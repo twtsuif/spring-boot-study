@@ -1,0 +1,11 @@
+logging:
+  file:
+    # 指定保存的日志名
+    name: log.txt
+    # 文件名默认 spring.log
+    path: log
+  level:
+    # root日志输出等级
+    root: warn
+    # 包下的所有日志
+    com.suif.controller: info

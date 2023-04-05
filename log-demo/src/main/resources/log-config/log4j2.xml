@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--monitorInterval重新检测配置文件时间 -->
+<Configuration xmlns:xi="http://www.w3.org/2001/XInclude">
+    <!--加载文件-->
+    <xi:include href="properties.xml" />
+
+    <!--输出源-->
+    <Appenders>
+        <!--控制台日志-->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <!--日志及格式-->
+            <PatternLayout pattern="${LOG_INFO_PATTERN}" disableAnsi="false"/>
+        </Console>
+
+        <!--文件日志-->
+        <!--Debug级别-->
+        <RollingFile name="debugLog" fileName="${LOG_PATH}/debug.log" filePattern="${LOG_PATH}/debug/%d{yyyy-MM-dd}-%i.log">
+            <!--日志等级过滤 onMatch表示匹配-->
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_INFO_PATTERN}" disableAnsi="false"/>
+            <!--滚动策略  1.基于大小 2.基于时间-->
+            <!--基于大小的滚动策略 超过该值滚动刷新-->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <!--设置文件个数上限-->
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <!--Info级别-->
+        <RollingFile name="infoLog" fileName="${LOG_PATH}/info.log" filePattern="${LOG_PATH}/info/%d{yyyy-MM-dd}-%i.log" >
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_INFO_PATTERN}" disableAnsi="false"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <!--Warn级别-->
+        <RollingFile name="warnLog" fileName="${LOG_PATH}/warn.log" filePattern="${LOG_PATH}/warn/%d{yyyy-MM-dd}-%i.log" >
+            <PatternLayout pattern="${LOG_INFO_PATTERN}" disableAnsi="false"/>
+            <LevelRangeFilter minLevel="WARN" maxLevel="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <!--Error级别-->
+        <RollingFile name="errorLog" fileName="${LOG_PATH}/error.log" filePattern="${LOG_PATH}/error/%d{yyyy-MM-dd}-%i.log" >
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_ERROR_PATTERN}" disableAnsi="false"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <!--日志记录-->
+    <Loggers>
+        <!--包日志-->
+        <!--additivity 是否向上级logger传递打印信息 默认为true-->
+        <Logger name="com.suif">
+            <AppenderRef ref="debugLog" />
+            <AppenderRef ref="infoLog"  />
+            <AppenderRef ref="errorLog" />
+        </Logger>
+
+        <Logger name="org.springframework">
+            <AppenderRef ref="debugLog" />
+            <AppenderRef ref="infoLog"  />
+            <AppenderRef ref="errorLog" />
+        </Logger>
+
+        <!--根日志-->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
